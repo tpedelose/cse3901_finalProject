@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @question.content %>
+</p>
+
+<p>
+  <strong>Correct:</strong>
+  <%= @question.correct %>
+</p>
+
+<p>
+  <strong>Fakes:</strong>
+  <%= @question.fakes %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @question.tag %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @question.category %>
+</p>
+
+<p>
+  <strong>Times used:</strong>
+  <%= @question.times_used %>
+</p>
+
+<p>
+  <strong>Times correct:</strong>
+  <%= @question.times_correct %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

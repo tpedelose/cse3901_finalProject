@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  correct: MyString
+  fakes: MyText
+  tag: MyString
+  category: MyString
+  times_used: 9.99
+  times_correct: 9.99
+
+two:
+  content: MyText
+  correct: MyString
+  fakes: MyText
+  tag: MyString
+  category: MyString
+  times_used: 9.99
+  times_correct: 9.99

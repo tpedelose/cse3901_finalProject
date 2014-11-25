@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  passcode: MyString
+  max_players: 9.99
+  max_observers: 9.99
+  players: MyText
+  observers: MyText
+  status: 9.99
+
+two:
+  name: MyString
+  passcode: MyString
+  max_players: 9.99
+  max_observers: 9.99
+  players: MyText
+  observers: MyText
+  status: 9.99

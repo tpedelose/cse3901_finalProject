@@ -1,2 +1,41 @@
 <h1>Play#index</h1>
 <p>Find me in app/views/play/index.html.erb</p>
+
+<div>
+	<div id="questionContainer"> <!-- Question -->
+		<div class="questionContent">
+			<%= @content.inspect %>
+			Lorem ipsum dolor sit amet, vel ut veritus adversarium, id aeque recusabo eum.
+		</div>
+	</div>
+	<div id="answerContainer"> <!-- Answers -->
+		<div id="answerGroup">
+			<div class="answerContent">
+				<%= button_tag "Answer 1" %>
+			</div>
+			<div class="answerContent">
+				Answer 2
+			</div>
+			<!-- Group of answers; size depends on total number of answers -->
+		</div>
+		<div id="answerGroup">
+			<div class="answerContent">
+				Answer 3
+			</div>
+			<div class="answerContent">
+				Answer 4
+			</div>
+			<!-- Group of answers; size depends on total number of answers -->
+		</div>
+		<div id="answerGroup">
+			<div class="answerContent">
+				Answer 5
+			</div>
+			<div class="answerContent">
+				Answer 6
+			</div>
+			<!-- Group of answers; size depends on total number of answers -->
+		</div>
+	</div>
+	<div class="timerBar"></div>
+</div>

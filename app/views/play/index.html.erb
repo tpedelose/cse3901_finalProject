@@ -1,39 +1,36 @@
-<h1>Play#index</h1>
 <p>Find me in app/views/play/index.html.erb</p>
 
 <div>
 	<div id="questionContainer"> <!-- Question -->
+		<img src="../../assets/devil.jpeg" style="width: 100%; float:center; z-index: 100;">
 		<div class="questionContent">
-			<%= @content.inspect %>
-			Lorem ipsum dolor sit amet, vel ut veritus adversarium, id aeque recusabo eum.
+			<h2><%= @question.content %></h2>
 		</div>
 	</div>
 	<div id="answerContainer"> <!-- Answers -->
+
+		<%= i = 1 %>
+		<%= 3.times do%>
+			<div id="answerGroup">
+				<%= submit_tag @answer_array.at(i-1).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+				<%= submit_tag @answer_array.at(i).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+			</div>	
+			<% i += 2 %>
+			<% n = ''%>
+		<% end %>
+		</br>
+
 		<div id="answerGroup">
-			<div class="answerContent">
-				<%= button_tag "Answer 1" %>
-			</div>
-			<div class="answerContent">
-				Answer 2
-			</div>
-			<!-- Group of answers; size depends on total number of answers -->
-		</div>
-		<div id="answerGroup">
-			<div class="answerContent">
-				Answer 3
-			</div>
-			<div class="answerContent">
-				Answer 4
-			</div>
-			<!-- Group of answers; size depends on total number of answers -->
-		</div>
-		<div id="answerGroup">
-			<div class="answerContent">
-				Answer 5
-			</div>
-			<div class="answerContent">
-				Answer 6
-			</div>
+			<%= button_to "Answer 1", { class: "answerContent" } do %>
+				<strong><%= @answer_array.at(0).upcase %></strong>
+			<% end %>
+
+			<%= submit_tag @answer_array.at(0).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+
+			<%= button_tag "Answer 1", data: { disable_with: "Please wait..." }, class: "answerContent" do%>
+				<% content_tag :strong, @answer_array.at(0).upcase %>
+			<% end %>
+
 			<!-- Group of answers; size depends on total number of answers -->
 		</div>
 	</div>

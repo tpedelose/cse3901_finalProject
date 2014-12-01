@@ -26,19 +26,21 @@ body {
 }
 */
 #questionContainer {
-    width: 100%;
+    min-width: 100%;
     height: 40%;
     margin: auto; 
     text-align: center;
+    z-index: 999;
+    float: left;
     /* animation styling */
     /*-webkit-animation: fadeInUpBig 3s;
     animation: fadeInUpBig 3s;*/
 }
 
 #answerContainer {
-    max-width: 100%;
+    width: 100%;
     height: 50%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 /* =Structure Tablet
@@ -53,21 +55,25 @@ body {
     #answerGroup {
         float: left;
         width: 28%;
+        margin: 0 auto;
     }
 }
 
 .questionContent, .answerContent { /* Card style */
+    min-width: 90%;
     padding: 1.5rem;
     box-shadow: 0 1px 2px #aaa;
     background: white;
     margin: 0 1rem 1rem;
     border-radius: 3px;
+    text-align: center;
 }
 
 .timerBar {
     width: 0%;
     min-height: 30px;
     height: auto;
+    float: left;
     background-color: #607d8b;
     /* animation styling */
     -webkit-animation: countdown 15s linear 2s; /* Chrome, Safari, Opera */

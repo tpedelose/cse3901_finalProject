@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'play/index'
+  get 'play/results'
+  post 'play/set_answer'  
   post 'play/set_answer'
   get 'play/answer'
   post 'play/answer'

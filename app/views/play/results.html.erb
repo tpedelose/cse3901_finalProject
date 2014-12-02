@@ -1,0 +1,26 @@
+<p>Find me in app/views/play/results.html.erb</p>
+
+<div>
+	<div id="questionContainer"> <!-- Question -->
+		<img src="../../assets/regis.jpg" style="width: 25%; float:center; z-index: 100;">
+		<div class="questionContent">
+			<h2><%= @question.content %></h2>
+		</div>
+	</div>
+	<div id="answerContainer"> <!-- Answers -->
+
+		<%= i = 0 %>
+		<%= 2.times do %>
+			<div id="answerRow">
+				<%#
+				<%= 3.times do %>
+					<div class="answerButton">
+						<%#<%= submit_tag @answer_array.at(i), data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+						<p>You answered correct!!!</p>
+					</div>
+				<%#<% end %> 
+			</div>
+			<% i += 1 %>
+		<% end %>
+		</br>
+</div>

@@ -24,10 +24,10 @@ class PlayController < ApplicationController
 
       check_answer_and_award(playing, time_left)
     #end
-    show_results
+    results
   end
 
-  def get_input             #equivalent to a "main" function
+  def results             #equivalent to a "main" function
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?
     @user_points = 0    #this can be done on a per-session/per-x-time basis.
@@ -75,12 +75,15 @@ class PlayController < ApplicationController
     # Will be a get method that displays new page with results
   end
 
+<<<<<<< HEAD
   def answer
     useranswer=params[:answer]
     tag=params[:tag]
     @answer=Answer.create :content => useranswer, :tag => tag
     redirect_to :action => "get_input"
   end
+=======
+>>>>>>> fd0b339fe8e2049b80bbe03da5d451f615f1b21e
 
   #Helper methods that are only accessable from this controller
   private

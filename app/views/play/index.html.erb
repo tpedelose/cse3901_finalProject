@@ -2,7 +2,7 @@
 
 <div>
 	<div id="questionContainer"> <!-- Question -->
-		<img src="../../assets/devil.jpeg" style="width: 100%; float:center; z-index: 100;">
+		
 		<div class="questionContent">
 			<h2><%= @question.content %></h2>
 		</div>
@@ -16,7 +16,6 @@
 				<%= submit_tag @answer_array.at(i).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
 			</div>	
 			<% i += 2 %>
-			<% n = ''%>
 		<% end %>
 		</br>
 

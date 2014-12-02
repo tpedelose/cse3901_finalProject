@@ -11,13 +11,15 @@
 
 		<h1> Your Answer </h1>
 
-			<%= form_tag({:controller => "play", :action => "answer"}) do %>
+			<%= form_tag "answer" do %>
 			  
 
 			  <div class="field">
 			    <%= text_area_tag(:answer) %>
 			  </div>
-
+			  <div class="field">
+			    <%= text_field_tag(:tag,@question.tag) %>
+			  </div>
 			  <div class="center">
 				 <%= submit_tag("Continue", :class => "submit") %>
 			  </div>

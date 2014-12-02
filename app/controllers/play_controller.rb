@@ -77,7 +77,8 @@ class PlayController < ApplicationController
 
   def answer
     useranswer=params[:answer]
-    @answer=Answer.create :content => useranswer 
+    tag=params[:tag]
+    @answer=Answer.create :content => useranswer, :tag => tag
     redirect_to :action => "get_input"
   end
 

@@ -24,7 +24,7 @@ class PlayController < ApplicationController
 
       check_answer_and_award(playing, time_left)
     #end
-    show_results
+    results
   end
 
   def results             #equivalent to a "main" function

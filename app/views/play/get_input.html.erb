@@ -1,23 +1,16 @@
-<div>
-	<div id="questionContainer"> <!-- Question -->
-		<img src="../../assets/devil.jpeg" style="width: 50%; float:center; z-index: 100;">
-		<div class="questionContent">
-			<h2>Question: <%= @question.content %></h2>
+<div id="outer-container">
+	<div id="inner-container">
+		<div id="question-row">
+			<h1>Question: <%= @question.content %></h1>
+		</div>
+		<div id="userinput-row">
+			<%= form_for :index, url: index_path(:question_id => @question.id, :user_answer => :ans) do %>
+				<%= text_field_tag(:answer) %>
+				<%= submit_tag("Continue", :class => "submit") %>
+			<% end %>
 		</div>
 	</div>
-	<div id="answerContainer"> <!-- Answers -->
-		<h1> Your Answer </h1>
-
-		<%= form_for :index, url: index_path(:question_id => @question.id, :user_answer => :ans) do %>
-			<div class="field">
-				<%= text_area_tag(:answer) %>
-			</div>
-			<div class="center">
-				<%= submit_tag("Continue", :class => "submit") %>
-			</div>
-		<% end %>
-		<!-- Group of answers; size depends on total number of answers -->
-	</div>
 </div>
-<div class="timerBar"></div>
+<div id="timer-container">
+	<div class="timerBar"></div>
 </div>

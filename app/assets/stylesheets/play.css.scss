@@ -92,15 +92,12 @@ form{
 
 .timerBar {
     width: 0%;
-    min-height: 30px;
-    height: auto;
-    float: left;
+    height: 30px;;
     background-color: #607d8b;
-    /* animation styling */
-    -webkit-animation: countdown 15s linear 2s; /* Chrome, Safari, Opera */
-    -webkit-animation-fill-mode: backwards;
-    animation: countdown 15s linear 2s;
     animation-fill-mode: backwards;
+    animation: countdown 15s linear 0s;
+    -webkit-animation-fill-mode: backwards;
+    -webkit-animation: countdown 15s linear 0s; /* Chrome, Safari, Opera */
 }
 
 

@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
-  get 'play/index'
+  root 'play#start'
+  get 'play/start'
   post 'play/set_user_answer'  
-  get 'play/results'
   post 'play/set_answer'  
   post 'play/set_answer'
   get 'play/answer'
   post 'play/answer'
-  get 'play/start'
-  post 'play/starttrivia'
 
-  get 'play/get_input'  
+  get 'play/index'
+  post 'play/index/:question_id/:user_answer' => 'play#index', as: :index
+  get 'play/get_input'
+  post 'play/get_input/:question_id' => 'play#get_input', as: :get_input
+  get 'play/results'
+  post 'play/results/:question_id/:user_answer' => 'play#results', as: :results
 
   resources :games
 

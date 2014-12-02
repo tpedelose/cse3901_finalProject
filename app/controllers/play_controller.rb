@@ -1,102 +1,100 @@
 class PlayController < ApplicationController
-  def index             #equivalent to a "main" function
-    playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
-    @questions_used = Array.new{1}        #only needs to be server-side?
-    @user_points = 0    #this can be done on a per-session/per-x-time basis.
-    @answers=Answer.all
 
-    #while @questions_used.length < 10
-      @question = choose_random_question
-      @answer_array = seperate_answers
+  def index
+  	if (params[:question_id].present? && params[:answer].present?)
+    	@question = Question.find_by(id: params[:question_id])
+    	@user_answer = params[:answer]
+    	@answer_array = @question.fakes.split(' ')
+		end
+  end
 
-      #Start counter for time user hase to answer question
-      start = Time.now
-      @user_answer = nil
-      #while ((Time.now - start) <= 15000 || @user_answer == nil) 
-            #Will update to "15000 + question_read_time" later
-        #!!! Probably needs to be done in Javascrpt  
-        #done = Time.now
-      #end
+  def start
+    @id = Question.all.sort_by{rand}.slice(0).id
+  end
+
+  def get_input
+  	if params[:question_id].present?
+    	@question = Question.find_by(id: params[:question_id])
+		end
+  end
+
+  def results
+    if (params[:question_id].present? && params[:user_answer].present?)
+      @question = Question.find_by(id: params[:question_id])
+      @user_choice = params[:commit]
+      @user_answer = params[:user_answer]
+      if @question == (@user_answer)
+      	@winner = "<h1>Your correct!</h1>".html_safe
+    	end
+      @answer = "The correct answer was #{@question.correct}"
+      @id = Question.all.sort_by{rand}.slice(0).id
+    end
+  end
+
+  #def index             #equivalent to a "main" function
+    # playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
+    # @questions_used = Array.new{1}        #only needs to be server-side?
+    # @user_points = 0    #this can be done on a per-session/per-x-time basis.
+    # @answers=Answer.all
+
+    # #while @questions_used.length < 10
+    #   @question = choose_random_question
+    #   @answer_array = seperate_answers
+
+    #   #Start counter for time user hase to answer question
+    #   start = Time.now
+    #   @user_answer = nil
+    #   #while ((Time.now - start) <= 15000 || @user_answer == nil) 
+    #         #Will update to "15000 + question_read_time" later
+    #     #!!! Probably needs to be done in Javascrpt  
+    #     #done = Time.now
+    #   #end
       
 
-      time_left = 0
-      if @user_answer != nil
-        time_left = done - start
-      end
+    #   time_left = 0
+    #   if @user_answer != nil
+    #     time_left = done - start
+    #   end
 
-      check_answer_and_award(playing, time_left)
-    #end
-    results
-  end
+    #   check_answer_and_award(playing, time_left)
+    # #end
+    # results
+ # end
 
-  def starttrivia
-    all = Question.all
-    session[:questions]=all.sort_by{rand}
-    session[:current]=1
-    redirect_to :action => "get_input"
-  end
+  # def get_input            #equivalent to a "main" function
+  #   playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
+  #   @questions_used = Array.new{1}        #only needs to be server-side?
+  #   @user_points = 0    #this can be done on a per-session/per-x-time basis.
+  #   @answers=Answer.all
+  #   #while @questions_used.length < 10
+  #     @current = session[:current]
+  #     if @current > Question.count
+  #       redirect_to play_results_path
+  #       return
+  #     end
+  #     @question = Question.find(@current)
+  #     @answer_array = seperate_answers
 
-  def get_input            #equivalent to a "main" function
-    playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
-    @questions_used = Array.new{1}        #only needs to be server-side?
-    @user_points = 0    #this can be done on a per-session/per-x-time basis.
-    @answers=Answer.all
-    #while @questions_used.length < 10
-      @current = session[:current]
-      if @current > Question.count
-        redirect_to play_results_path
-        return
-      end
-      @question = Question.find(@current)
-      @answer_array = seperate_answers
-
-      #Start counter for time user hase to answer question
-      start = Time.now
-      done = nil
-      #while (Time.now - start) <= 15000 #Will update to "15000 + question_read_time" later
-        #!!! Probably needs to be done in Javascrpt  
-        #done = Time.now
-      #end
+  #     #Start counter for time user hase to answer question
+  #     start = Time.now
+  #     done = nil
+  #     #while (Time.now - start) <= 15000 #Will update to "15000 + question_read_time" later
+  #       #!!! Probably needs to be done in Javascrpt  
+  #       #done = Time.now
+  #     #end
       
 
-      time_left = 0
-      if done != nil
-        time_left = done - start
-      end
+  #     time_left = 0
+  #     if done != nil
+  #       time_left = done - start
+  #     end
 
-      check_answer_and_award(playing, time_left)
-    #end
-    show_results
-  end
+  #     check_answer_and_award(playing, time_left)
+  #   #end
+  #   show_results
+  # end
 
-  def results             #equivalent to a "main" function
-    playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
-    @questions_used = Array.new{1}        #only needs to be server-side?
-    @user_points = 0    #this can be done on a per-session/per-x-time basis.
-    @questions=Question.all
-    @answers=Answer.all
-    #while @questions_used.length < 10
-      @question = choose_random_question
-      @answer_array = seperate_answers
 
-      #Start counter for time user hase to answer question
-      start = Time.now
-      done = nil
-      #while (Time.now - start) <= 15000 #Will update to "15000 + question_read_time" later
-        #!!! Probably needs to be done in Javascrpt  
-        #done = Time.now
-      #end
-      
-
-      time_left = 0
-      if done != nil
-        time_left = done - start
-      end
-
-      check_answer_and_award(playing, time_left)
-    #end
-    show_results
-  end
 
   def set_user_answer
     @user_answer = params[:commit]

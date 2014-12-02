@@ -1,13 +1,7 @@
 <h1>Start Quiz</h1>
 
-<%= form_tag "starttrivia" do %>
-
-  
-  <div class="center">
-	 <%= submit_tag "Start!", :class => "submit"%>
-  </div>
+<div class="center">
+<%= form_for :get_input, url: get_input_path(:question_id => @id) do %>
+	<%= submit_tag "Start!", :class => "submit" %>
 <% end %>
-
-<% content_for(:title) do %>
-  Start Quiz
-<% end %>
+</div>

@@ -1,33 +1,23 @@
-<p>Find me in app/views/play/index.html.erb</p>
-
 <div>
 	<div id="questionContainer"> <!-- Question -->
-		<img src="../../assets/devil.jpeg" style="width: 100%; float:center; z-index: 100;">
+		<img src="../../assets/devil.jpeg" style="width: 50%; float:center; z-index: 100;">
 		<div class="questionContent">
-			<h2><%= @question.content %></h2>
+			<h2>Question: <%= @question.content %></h2>
 		</div>
 	</div>
 	<div id="answerContainer"> <!-- Answers -->
-
 		<h1> Your Answer </h1>
 
-			<%= form_tag "answer" do %>
-			  
-
-			  <div class="field">
-			    <%= text_area_tag(:answer) %>
-			  </div>
-			  <div class="field">
-			    <%= text_field_tag(:tag,@question.tag) %>
-			  </div>
-			  <div class="center">
-				 <%= submit_tag("Continue", :class => "submit") %>
-			  </div>
-			<% end %>
-
-
-			<!-- Group of answers; size depends on total number of answers -->
-		</div>
+		<%= form_for :index, url: index_path(:question_id => @question.id, :user_answer => :ans) do %>
+			<div class="field">
+				<%= text_area_tag(:answer) %>
+			</div>
+			<div class="center">
+				<%= submit_tag("Continue", :class => "submit") %>
+			</div>
+		<% end %>
+		<!-- Group of answers; size depends on total number of answers -->
 	</div>
-	<div class="timerBar"></div>
+</div>
+<div class="timerBar"></div>
 </div>

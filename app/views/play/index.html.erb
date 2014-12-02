@@ -1,39 +1,24 @@
-<p>Find me in app/views/play/index.html.erb</p>
-
 <div>
 	<div id="questionContainer"> <!-- Question -->
-		
 		<div class="questionContent">
-			<h2><%= @question.content %></h2>
-			<h3><%= @question.tag %></h3>
+			<h2>Question: <%= @question.content %></h2>
 		</div>
 	</div>
 	<div id="answerContainer"> <!-- Answers -->
-
-		<%= form_tag "set_user_answer", remote: true do %>
+		<%= form_for :results, url: results_path(:question_id => @question.id, :user_answer => @user_answer) do %>
 			<div id="answerGroup">
-  				<%= submit_tag @answer_array.at(0).upcase, class: "answerContent" %>
-  				<%= submit_tag @answer_array.at(1).upcase, class: "answerContent" %>
-  			</div>
-  			<div id="answerGroup">
-  				<%= submit_tag @answer_array.at(2).upcase, class: "answerContent" %>
-  				<%= submit_tag @answer_array.at(3).upcase, class: "answerContent" %>
-  			</div>
-  			<div id="answerGroup">	
-  				<%= submit_tag @answer_array.at(4).upcase, class: "answerContent" %>
-  				<%= submit_tag @answer_array.at(5).upcase, class: "answerContent" %>
-  			</div>
+				<%= submit_tag @answer_array.at(0), :class => "answerContent" %>
+				<%= submit_tag @answer_array.at(1), :class => "answerContent" %>
+			</div>
+			<div id="answerGroup">
+				<%= submit_tag @answer_array.at(2), :class => "answerContent" %>
+				<%= submit_tag @answer_array.at(3), :class => "answerContent" %>
+			</div>
+			<div id="answerGroup">
+				<h1>Your Answer: </h1>
+				<%= submit_tag @user_answer, :class => "answerContent" %>
+			</div>			
 		<% end %>
-
-		</div>
+	</div>
 	<div class="timerBar"></div>
-<h1>Listing answers</h1>
-<div id="answerGroup">
-	<% @answers.each do |ans| %>
-	<% if ans.tag==@question.tag %>
-	<%= submit_tag ans.content, class: "answerContent" %>
-	<% else %>
-	<% end %>
-	<% end %>
-</div>
 </div>

@@ -1,24 +1,16 @@
-<p>Find me in app/views/play/results.html.erb</p>
+<h1><%= @winner %></h1>
 
 <div>
-	<% @questions.each do |question| %>
 	<div id="questionContainer"> <!-- Question -->
 		<img src="../../assets/regis.jpg" style="width: 25%; float:center; z-index: 100;">
 		<div class="questionContent">
-			<h2><%= question.content %></h2>
-			<h3>The correct answer was <%= question.correct %></h3>
+			<h2>Question: <%= @question.content %></h2>
+			<h2>Correct Answer: <%= @question.correct %></h2>
+			<h2>You Entered: <%= @user_answer %></h2>
+			<h2>You Chose: <%= @user_choice %></h2>
 		</div>
 	</div>
-	<div id="answerContainer"> <!-- Answers -->
-		<h4> INCORRECT ANSWERS </h4>
-		<div id="answerGroup">
-			<% @answers.each do |ans| %>
-			<% if ans.tag==@question.tag %>
-			<%= submit_tag ans.content, class: "answerContent" %>
-			<% else %>
-			<% end %>
-			<% end %>
-		</div>
-	</div>
+	<%= form_for :get_input, url: get_input_path(id: @id) do %>
+		<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
 	<% end %>
 </div>

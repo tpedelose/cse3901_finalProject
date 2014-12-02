@@ -15,6 +15,8 @@ class PlayController < ApplicationController
   def start
   	@id = Question.all.sort_by{rand}.slice(0).id
     session[:score] = 0
+    session[:usedid] = Array.new
+    session[:usedid].push(@id)
   end
 
   def get_input
@@ -35,6 +37,10 @@ class PlayController < ApplicationController
   		end
   		@answer = "The correct answer was #{@question.correct}"
   		@id = Question.all.sort_by{rand}.slice(0).id
+      while session[:usedid].include?(@id) && session[:usedid].length < Question.all.count
+        @id = Question.all.sort_by{rand}.slice(0).id
+      end
+      session[:usedid].push(@id)
   	end
     @score = session[:score]
   end

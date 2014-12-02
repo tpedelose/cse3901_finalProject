@@ -56,31 +56,9 @@ class PlayController < ApplicationController
     show_results
   end
 
-  def set_user_answer #may need to be done by JavaScript
-    if params[:commit] == @answer_array.at(0).upcase
-
-    elsif params[:commit]
-
-    elsif params[:commit]
-
-    elsif params[:commit]
-
-    elsif params[:commit]
-
-    elsif params[:commit]
-
-    else
-
-    end
-      
-    @user_answer = @answer_array.at(number)
+  def set_user_answer
+    @user_answer = params[:commit]
   end
-
-  # Resets view for next round, etc.
-  def load_next_round  #??? Need?
-    
-  end
-
 
   #Select final round question, etc
   def final_round  #??? Need?

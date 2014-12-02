@@ -4,7 +4,10 @@ def index
 	if (params[:question_id].present? && params[:answer].present?)
 		@question = Question.find_by(id: params[:question_id])
 		@user_answer = params[:answer]
-		@answer_array = @question.fakes.split(' ')
+		answer_array = @question.fakes.split(' ')
+    answer_array.push(Question.find_by(id: params[:question_id]).correct)
+    answer_array.push(params[:answer])
+    @answer_array = answer_array.shuffle
 	end
 end
 

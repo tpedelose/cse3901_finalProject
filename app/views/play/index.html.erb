@@ -5,6 +5,7 @@
 		
 		<div class="questionContent">
 			<h2><%= @question.content %></h2>
+			<h3><%= @question.tag %></h3>
 		</div>
 	</div>
 	<div id="answerContainer"> <!-- Answers -->
@@ -26,4 +27,13 @@
 
 		</div>
 	<div class="timerBar"></div>
+<h1>Listing answers</h1>
+<div id="answerGroup">
+	<% @answers.each do |ans| %>
+	<% if ans.tag==@question.tag %>
+	<%= submit_tag ans.content, class: "answerContent" %>
+	<% else %>
+	<% end %>
+	<% end %>
+</div>
 </div>

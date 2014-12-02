@@ -3,6 +3,7 @@ class PlayController < ApplicationController
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?
     @user_points = 0    #this can be done on a per-session/per-x-time basis.
+    @answers=Answer.all
 
     #while @questions_used.length < 10
       @question = choose_random_question
@@ -39,7 +40,7 @@ class PlayController < ApplicationController
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?
     @user_points = 0    #this can be done on a per-session/per-x-time basis.
-
+    @answers=Answer.all
     #while @questions_used.length < 10
       @current = session[:current]
       if @current > 5

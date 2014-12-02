@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :questions
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d912262770c486e9ba9dfb3642bac9924fa9e614
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -2,13 +2,18 @@
 
 <div>
 	<div id="questionContainer"> <!-- Question -->
+<<<<<<< HEAD
 		<img src="../../assets/devil.jpeg" style="width: 100%; float:center; z-index: 100;">
+=======
+		
+>>>>>>> d912262770c486e9ba9dfb3642bac9924fa9e614
 		<div class="questionContent">
 			<h2><%= @question.content %></h2>
 		</div>
 	</div>
 	<div id="answerContainer"> <!-- Answers -->
 
+<<<<<<< HEAD
 		<%= i = 0 %>
 		<%= 3.times do %>
 			<div id="answerRow">
@@ -41,9 +46,35 @@
 					<% content_tag :strong, @answer_array.at(0).upcase %>
 				<% end %>
 			</div>
+=======
+		<%= i = 1 %>
+		<%= 3.times do%>
+			<div id="answerGroup">
+				<%= submit_tag @answer_array.at(i-1).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+				<%= submit_tag @answer_array.at(i).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+			</div>	
+			<% i += 2 %>
+		<% end %>
+		</br>
+
+		<div id="answerGroup">
+			<%= button_to "Answer 1", { class: "answerContent" } do %>
+				<strong><%= @answer_array.at(0).upcase %></strong>
+			<% end %>
+
+			<%= submit_tag @answer_array.at(0).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+
+			<%= button_tag "Answer 1", data: { disable_with: "Please wait..." }, class: "answerContent" do%>
+				<% content_tag :strong, @answer_array.at(0).upcase %>
+			<% end %>
+>>>>>>> d912262770c486e9ba9dfb3642bac9924fa9e614
 
 			<!-- Group of answers; size depends on total number of answers -->
 		</div>
 	</div>
 	<div class="timerBar"></div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> d912262770c486e9ba9dfb3642bac9924fa9e614

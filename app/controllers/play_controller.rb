@@ -28,13 +28,25 @@ class PlayController < ApplicationController
     results
   end
 
+  def starttrivia
+    all = Question.all
+    session[:questions]=all.sort_by{rand}
+    session[:current]=1
+    redirect_to :action => "get_input"
+  end
+
   def get_input            #equivalent to a "main" function
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?
     @user_points = 0    #this can be done on a per-session/per-x-time basis.
 
     #while @questions_used.length < 10
-      @question = choose_random_question
+      @current = session[:current]
+      if @current > 5
+        redirect_to :action => "result"
+        return
+      end
+      @question = Question.find(@current)
       @answer_array = seperate_answers
 
       #Start counter for time user hase to answer question
@@ -102,7 +114,8 @@ class PlayController < ApplicationController
     useranswer=params[:answer]
     tag=params[:tag]
     @answer=Answer.create :content => useranswer, :tag => tag
-    redirect_to :action => "get_input"
+    session[:current]+=1
+    redirect_to play_get_input_path
   end
 
   #Helper methods that are only accessable from this controller

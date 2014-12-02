@@ -84,18 +84,18 @@ class PlayController < ApplicationController
     show_results
   end
 
-  def set_user_answer number #may need to be done by JavaScript
-    if params[:answer_0]
+  def set_user_answer #may need to be done by JavaScript
+    if params[:commit] == @answer_array.at(0).upcase
 
-    elsif params[:answer_1]
+    elsif params[:commit]
 
-    elsif params[:answer_2]
+    elsif params[:commit]
 
-    elsif params[:answer_3]
+    elsif params[:commit]
 
-    elsif params[:answer_4]
+    elsif params[:commit]
 
-    elsif params[:answer_5]
+    elsif params[:commit]
 
     else
 

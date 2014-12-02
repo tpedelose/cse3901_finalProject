@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'play/set_answer'
   get 'play/answer'
   post 'play/answer'
+  get 'play/start'
+  post 'play/starttrivia'
 
   get 'play/get_input'  
 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'play/index'
-  post 'play/set_answer'  
+  post 'play/set_user_answer'  
 
   resources :games
 

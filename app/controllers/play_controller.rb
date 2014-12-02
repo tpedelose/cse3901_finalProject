@@ -12,15 +12,16 @@ class PlayController < ApplicationController
 
       #Start counter for time user hase to answer question
       start = Time.now
-      done = nil
-      #while (Time.now - start) <= 15000 #Will update to "15000 + question_read_time" later
+      @user_answer = nil
+      #while ((Time.now - start) <= 15000 || @user_answer == nil) 
+            #Will update to "15000 + question_read_time" later
         #!!! Probably needs to be done in Javascrpt  
         #done = Time.now
       #end
       
 
       time_left = 0
-      if done != nil
+      if @user_answer != nil
         time_left = done - start
       end
 
@@ -30,6 +31,22 @@ class PlayController < ApplicationController
   end
 
   def set_user_answer number #may need to be done by JavaScript
+    if params[:answer_0]
+
+    elsif params[:answer_1]
+
+    elsif params[:answer_2]
+
+    elsif params[:answer_3]
+
+    elsif params[:answer_4]
+
+    elsif params[:answer_5]
+
+    else
+
+    end
+      
     @user_answer = @answer_array.at(number)
   end
 

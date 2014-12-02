@@ -43,8 +43,8 @@ class PlayController < ApplicationController
     @answers=Answer.all
     #while @questions_used.length < 10
       @current = session[:current]
-      if @current > 5
-        redirect_to :action => "result"
+      if @current > Question.count
+        redirect_to play_results_path
         return
       end
       @question = Question.find(@current)
@@ -73,7 +73,8 @@ class PlayController < ApplicationController
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?
     @user_points = 0    #this can be done on a per-session/per-x-time basis.
-
+    @questions=Question.all
+    @answers=Answer.all
     #while @questions_used.length < 10
       @question = choose_random_question
       @answer_array = seperate_answers

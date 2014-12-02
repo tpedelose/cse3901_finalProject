@@ -1,26 +1,24 @@
 <p>Find me in app/views/play/results.html.erb</p>
 
 <div>
+	<% @questions.each do |question| %>
 	<div id="questionContainer"> <!-- Question -->
 		<img src="../../assets/regis.jpg" style="width: 25%; float:center; z-index: 100;">
 		<div class="questionContent">
-			<h2><%= @question.content %></h2>
+			<h2><%= question.content %></h2>
+			<h3>The correct answer was <%= question.correct %></h3>
 		</div>
 	</div>
 	<div id="answerContainer"> <!-- Answers -->
-
-		<%= i = 0 %>
-		<%= 2.times do %>
-			<div id="answerRow">
-				<%#
-				<%= 3.times do %>
-					<div class="answerButton">
-						<%#<%= submit_tag @answer_array.at(i), data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
-						<p>You answered correct!!!</p>
-					</div>
-				<%#<% end %> 
-			</div>
-			<% i += 1 %>
-		<% end %>
-		</br>
+		<h4> INCORRECT ANSWERS </h4>
+		<div id="answerGroup">
+			<% @answers.each do |ans| %>
+			<% if ans.tag==@question.tag %>
+			<%= submit_tag ans.content, class: "answerContent" %>
+			<% else %>
+			<% end %>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
 </div>

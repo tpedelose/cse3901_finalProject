@@ -42,6 +42,20 @@ body {
     margin: 0 auto;
 }
 
+#answerContainer h1{
+    text-align: center;
+}
+
+#answerContainer #answerRow{
+    width: 90%;
+    margin: auto;
+}
+
+#answerContainer #answerRow .answerButton{
+    width: 33%;
+    float: left;
+}
+
 /* =Structure Tablet
 -------------------------------------------------------------- */
 @media screen and (min-width : 900px) {
@@ -53,7 +67,7 @@ body {
 
     #answerGroup {
         float: left;
-        width: 28%;
+        width: 33%;
         margin: 0 auto;
     }
 }

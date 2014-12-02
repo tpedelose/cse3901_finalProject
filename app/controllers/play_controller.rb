@@ -1,6 +1,4 @@
 class PlayController < ApplicationController
-
-
   def index             #equivalent to a "main" function
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?
@@ -49,7 +47,6 @@ class PlayController < ApplicationController
       
     @user_answer = @answer_array.at(number)
   end
-
 
   # Resets view for next round, etc.
   def load_next_round  #??? Need?

@@ -1,35 +1,35 @@
 class PlayController < ApplicationController
 
-  def index
-  	if (params[:question_id].present? && params[:answer].present?)
-    	@question = Question.find_by(id: params[:question_id])
-    	@user_answer = params[:answer]
-    	@answer_array = @question.fakes.split(' ')
+def index
+	if (params[:question_id].present? && params[:answer].present?)
+		@question = Question.find_by(id: params[:question_id])
+		@user_answer = params[:answer]
+		@answer_array = @question.fakes.split(' ')
+	end
+end
+
+def start
+	@id = Question.all.sort_by{rand}.slice(0).id
+end
+
+def get_input
+	if params[:question_id].present?
+		@question = Question.find_by(id: params[:question_id])
+	end
+end
+
+def results
+	if (params[:question_id].present? && params[:user_answer].present?)
+		@question = Question.find_by(id: params[:question_id])
+		@user_choice = params[:commit]
+		@user_answer = params[:user_answer]
+		if @question == (@user_answer)
+			@winner = "<h1>Your correct!</h1>".html_safe
 		end
-  end
-
-  def start
-    @id = Question.all.sort_by{rand}.slice(0).id
-  end
-
-  def get_input
-  	if params[:question_id].present?
-    	@question = Question.find_by(id: params[:question_id])
-		end
-  end
-
-  def results
-    if (params[:question_id].present? && params[:user_answer].present?)
-      @question = Question.find_by(id: params[:question_id])
-      @user_choice = params[:commit]
-      @user_answer = params[:user_answer]
-      if @question == (@user_answer)
-      	@winner = "<h1>Your correct!</h1>".html_safe
-    	end
-      @answer = "The correct answer was #{@question.correct}"
-      @id = Question.all.sort_by{rand}.slice(0).id
-    end
-  end
+		@answer = "The correct answer was #{@question.correct}"
+		@id = Question.all.sort_by{rand}.slice(0).id
+	end
+end
 
   #def index             #equivalent to a "main" function
     # playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
@@ -96,63 +96,63 @@ class PlayController < ApplicationController
 
 
 
-  def set_user_answer
-    @user_answer = params[:commit]
-  end
+  # def set_user_answer
+  #   @user_answer = params[:commit]
+  # end
 
-  #Select final round question, etc
-  def final_round  #??? Need?
+  # #Select final round question, etc
+  # def final_round  #??? Need?
 
-  end
+  # end
 
-  #Display round end results
-  def show_results
-    # Will be a get method that displays new page with results
-  end
+  # #Display round end results
+  # def show_results
+  #   # Will be a get method that displays new page with results
+  # end
 
-  def answer
-    useranswer=params[:answer]
-    tag=params[:tag]
-    @answer=Answer.create :content => useranswer, :tag => tag
-    session[:current]+=1
-    redirect_to play_get_input_path
-  end
+  # def answer
+  #   useranswer=params[:answer]
+  #   tag=params[:tag]
+  #   @answer=Answer.create :content => useranswer, :tag => tag
+  #   session[:current]+=1
+  #   redirect_to play_get_input_path
+  # end
 
-  #Helper methods that are only accessable from this controller
-  private
+  # #Helper methods that are only accessable from this controller
+  # private
 
-    #helper method that chooses new question randomly (need to limit to non-"final round" questions)
-    def choose_random_question
-      domanda = Question.all.sort_by{rand}.slice(0)
-      while @questions_used.include?(domanda.id)
-        domanda = Question.all.sort_by{rand}.slice(0)
-      end
+  #   #helper method that chooses new question randomly (need to limit to non-"final round" questions)
+  #   def choose_random_question
+  #     domanda = Question.all.sort_by{rand}.slice(0)
+  #     while @questions_used.include?(domanda.id)
+  #       domanda = Question.all.sort_by{rand}.slice(0)
+  #     end
 
-      #add the question id into array of used questions
-      @questions_used << domanda.id
-      return domanda
-    end
+  #     #add the question id into array of used questions
+  #     @questions_used << domanda.id
+  #     return domanda
+  #   end
 
-    #seperates the @question.fakes string into an array of 5 random choices. Returns that array, randomized
-    def seperate_answers
-      temp_arr = @question.fakes.split "; " # contains fake answers 
+  #   #seperates the @question.fakes string into an array of 5 random choices. Returns that array, randomized
+  #   def seperate_answers
+  #     temp_arr = @question.fakes.split "; " # contains fake answers 
       
-      random_fakes = temp_arr.sort_by{rand}.slice(0,5) #finds 5 random fake answers
-         #the end number will be updated to n+1 users when multiplayer is added
-      random_fakes << @question.correct
+  #     random_fakes = temp_arr.sort_by{rand}.slice(0,5) #finds 5 random fake answers
+  #        #the end number will be updated to n+1 users when multiplayer is added
+  #     random_fakes << @question.correct
 
-      return random_fakes.sort_by{rand}
-    end
+  #     return random_fakes.sort_by{rand}
+  #   end
 
 
-    # Determines if user's answer is right and award points based on correctness, time left (ms)
-    def check_answer_and_award multiplier, time_left
-      if @user_answer == @question.correct
-        correct_value = 1000 * multiplier
-        #calculate points awarded here; use time left on clock, etc.
-        @user_points = correct_value
-      else #incorrect answer
-        @user_points -= 500 * multiplier
-      end
-    end
+  #   # Determines if user's answer is right and award points based on correctness, time left (ms)
+  #   def check_answer_and_award multiplier, time_left
+  #     if @user_answer == @question.correct
+  #       correct_value = 1000 * multiplier
+  #       #calculate points awarded here; use time left on clock, etc.
+  #       @user_points = correct_value
+  #     else #incorrect answer
+  #       @user_points -= 500 * multiplier
+  #     end
+  #   end
   end

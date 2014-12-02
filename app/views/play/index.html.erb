@@ -1,0 +1,49 @@
+<p>Find me in app/views/play/index.html.erb</p>
+
+<div>
+	<div id="questionContainer"> <!-- Question -->
+		<img src="../../assets/devil.jpeg" style="width: 100%; float:center; z-index: 100;">
+		<div class="questionContent">
+			<h2><%= @question.content %></h2>
+		</div>
+	</div>
+	<div id="answerContainer"> <!-- Answers -->
+
+		<%= i = 0 %>
+		<%= 3.times do %>
+			<div id="answerRow">
+				<%= 3.times do %>
+					<div class="answerButton">
+						<%= submit_tag @answer_array.at(i), data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+					</div>
+				<% end %>
+			</div>
+			<% i += 1 %>
+		<% end %>
+		</br>
+
+		<h1>ANSWERS</h1>
+
+		
+		<div id="answerRow">
+			<div class="answerButton">
+				<%= button_to "Answer 1", { class: "answerContent" } do %>
+					<strong><%= @answer_array.at(0).upcase %></strong>
+				<% end %>
+			</div>
+
+			<div class="answerButton">
+				<%= submit_tag @answer_array.at(0).upcase, data: { data_disable_with: "Please wait..." }, class: "answerContent" %>
+			</div>
+
+			<div class="answerButton">
+				<%= button_tag "Answer 1", data: { disable_with: "Please wait..." }, class: "answerContent" do%>
+					<% content_tag :strong, @answer_array.at(0).upcase %>
+				<% end %>
+			</div>
+
+			<!-- Group of answers; size depends on total number of answers -->
+		</div>
+	</div>
+	<div class="timerBar"></div>
+</div>

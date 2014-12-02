@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'play/index'
-<<<<<<< HEAD
   post 'play/set_user_answer'  
-=======
   get 'play/results'
   post 'play/set_answer'  
   post 'play/set_answer'
@@ -10,7 +8,6 @@ Rails.application.routes.draw do
   post 'play/answer'
 
   get 'play/get_input'  
->>>>>>> 6064eed09886cd9cb598763b30dfd2634e802e7e
 
   resources :games
 

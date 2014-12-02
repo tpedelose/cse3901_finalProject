@@ -28,6 +28,34 @@ class PlayController < ApplicationController
     results
   end
 
+  def get_input            #equivalent to a "main" function
+    playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
+    @questions_used = Array.new{1}        #only needs to be server-side?
+    @user_points = 0    #this can be done on a per-session/per-x-time basis.
+
+    #while @questions_used.length < 10
+      @question = choose_random_question
+      @answer_array = seperate_answers
+
+      #Start counter for time user hase to answer question
+      start = Time.now
+      done = nil
+      #while (Time.now - start) <= 15000 #Will update to "15000 + question_read_time" later
+        #!!! Probably needs to be done in Javascrpt  
+        #done = Time.now
+      #end
+      
+
+      time_left = 0
+      if done != nil
+        time_left = done - start
+      end
+
+      check_answer_and_award(playing, time_left)
+    #end
+    show_results
+  end
+
   def results             #equivalent to a "main" function
     playing = 1         #this is the multiplier to points awarded; 1 = 1x, 2 = 2x, 0 <= not playing
     @questions_used = Array.new{1}        #only needs to be server-side?

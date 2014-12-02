@@ -10,7 +10,7 @@
 			<h2>You Chose: <%= @user_choice %></h2>
 		</div>
 	</div>
-	<%= form_for :get_input, url: get_input_path(id: @id) do %>
+	<%= form_for :get_input, url: get_input_path(:question_id => @id ) do %>
 		<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
 	<% end %>
 </div>

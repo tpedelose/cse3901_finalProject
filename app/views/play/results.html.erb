@@ -1,8 +1,8 @@
 <h1><%= @winner %></h1>
-
+<h1>Score: <%= @score %></h1>
 <div>
 	<div id="questionContainer"> <!-- Question -->
-		<img src="../../assets/regis.jpg" style="width: 25%; float:center; z-index: 100;">
+		<img src="/assets/regis.jpg" style="width: 25%; float:center; z-index: 100;">
 		<div class="questionContent">
 			<h2>Question: <%= @question.content %></h2>
 			<h2>Correct Answer: <%= @question.correct %></h2>
@@ -10,7 +10,7 @@
 			<h2>You Chose: <%= @user_choice %></h2>
 		</div>
 	</div>
-	<%= form_for :get_input, url: get_input_path(id: @id) do %>
+	<%= form_for :get_input, url: get_input_path(:question_id => @id ) do %>
 		<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
 	<% end %>
 </div>

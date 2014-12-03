@@ -15,7 +15,9 @@ class PlayController < ApplicationController
         end
       end
       answer_array.push(Question.find_by(id: params[:question_id]).correct)
-      answer_array.push(params[:answer].to_s.upcase)
+      if @question.correct.to_s != params[:answer].to_s.upcase
+        answer_array.push(params[:answer].to_s.upcase)
+      end
       while answer_array.length < 6 
         whiletemp=Answer.all.sort_by{rand}.slice(0)
         if !answer_array.include?(whiletemp.content) && whiletemp.tag==params[:question_id].to_s

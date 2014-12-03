@@ -4,10 +4,24 @@ class PlayController < ApplicationController
     @score = session[:score]
   	if (params[:question_id].present? && params[:answer].present?)
   		@question = Question.find_by(id: params[:question_id])
-  		@user_answer = params[:answer]
-  		answer_array = @question.fakes.split('; ')
+      @answer=Answer.create :content => params[:answer].to_s.upcase, :tag => params[:question_id]
+      @dbarray=Answer.all
+      @user_answer = params[:answer]
+      answer_array=Array.new
+      if Answer.where(:tag => params[:question_id].to_s).count < 6
+        fill = @question.fakes.split('; ')
+        fill.each do |x|
+          Answer.create :content => x, :tag => params[:question_id]
+        end
+      end
       answer_array.push(Question.find_by(id: params[:question_id]).correct)
-      answer_array.push(params[:answer])
+      answer_array.push(params[:answer].to_s.upcase)
+      while answer_array.length < 6 
+        whiletemp=Answer.all.sort_by{rand}.slice(0)
+        if !answer_array.include?(whiletemp.content) && whiletemp.tag==params[:question_id].to_s
+          answer_array.push(whiletemp.content)
+        end
+      end
       @answer_array = answer_array.shuffle
   	end
   end

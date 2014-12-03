@@ -8,10 +8,10 @@ class PlayController < ApplicationController
       @dbarray=Answer.all
       @user_answer = params[:answer]
       answer_array=Array.new
-      if Answer.where(:tag => params[:question_id].to_s).count < 6
+      if Answer.where(:tag => params[:question_id].to_s).count < 4
         fill = @question.fakes.split('; ')
         fill.each do |x|
-          Answer.create :content => x, :tag => params[:question_id]
+          Answer.create :content => x.upcase, :tag => params[:question_id]
         end
       end
       answer_array.push(Question.find_by(id: params[:question_id]).correct)
@@ -59,5 +59,6 @@ class PlayController < ApplicationController
       session[:usedid].push(@id)
   	end
     @score = session[:score]
+    @maximum= Answer.where(:tag => params[:question_id].to_s).maximum("content")
   end
 end

@@ -69,10 +69,10 @@ div#timer-container {
     height: 30px;
     background-color: #607d8b;
     -webkit-animation-fill-mode: backwards;
-    -webkit-animation: countdown 15s linear 0s;
+    -webkit-animation: countdown 10s linear 0s;
     /* Chrome, Safari, Opera */
     animation-fill-mode: backwards;
-    animation: countdown 15s linear 0s; }
+    animation: countdown 10s linear 0s; }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes countdown {

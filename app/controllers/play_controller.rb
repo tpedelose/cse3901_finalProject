@@ -99,7 +99,7 @@ class PlayController < ApplicationController
       @chart+="['#{x.content}', x.count],\n"
     end
     session[:counter]+=1
-    if session[:counter]>3
+    if session[:counter]>10
       redirect_to play_stats_path
     end
   end

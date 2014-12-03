@@ -3,14 +3,14 @@ class PlayController < ApplicationController
   def index
     @score = session[:score]
     @counter = session[:counter].to_i
-  	if (params[:question_id].present?)
-  		@question = Question.find_by(id: params[:question_id])
+    if (params[:question_id].present?)
+      @question = Question.find_by(id: params[:question_id])
       #@answer=Answer.create :content => params[:answer].to_s.upcase, :tag => params[:question_id]
       @dbarray=Answer.all
       if params[:answer].present?
         @user_answer = params[:answer]
       else
-        @user_answer = "IM AN IDIOT"
+        @user_answer = "NO INPUT"
       end
       answer_array=Array.new
       if Answer.where(:tag => params[:question_id].to_s).count < 4
@@ -30,15 +30,16 @@ class PlayController < ApplicationController
         end
       end
       @answer_array = answer_array.shuffle
-  	end
+    end
   end
 
   def start
-  	@id = Question.all.sort_by{rand}.slice(0).id
+    @id = Question.all.sort_by{rand}.slice(0).id
     session[:score] = 0
     session[:counter] = 1
     session[:username]=nil
     session[:usedid] = Array.new
+    session[:usedid].push(@id)
   end
 
   def get_input
@@ -47,32 +48,42 @@ class PlayController < ApplicationController
     end
     @score = session[:score].to_i
     @counter = session[:counter].to_i
-  	if params[:question_id].present?
-  		@question = Question.find_by(id: params[:question_id])
-  	end
+    if params[:question_id].present?
+      @question = Question.find_by(id: params[:question_id])
+    end
   end
 
   def results
+    if params[:user_answer].present?
+      @user_answer = params[:user_answer].upcase
+    else
+      @user_answer = "NO ANSWER"
+    end
+    if params[:commit].present?
+      @user_choice = params[:commit].upcase
+    else
+      @user_choice = "NO INPUT"
+    end
     @answer=Answer.create :content => params[:commit].to_s.upcase, :tag => params[:question_id]
-  	if (params[:question_id].present? && params[:user_answer].present?)
-  		@question = Question.find_by(id: params[:question_id])
-  		@user_choice = params[:commit].upcase
-  		@user_answer = params[:user_answer].upcase
-  		if @question.correct == (@user_choice)
-  			@winnerselect = "<h1>Your answer selection was correct!</h1>".html_safe
+    if (params[:question_id].present? && params[:user_answer].present?)
+      @question = Question.find_by(id: params[:question_id])
+      #@user_choice = params[:commit].upcase
+      #@user_answer = @user_answer.upcase
+      if @question.correct == (@user_choice)
+        @winnerselect = "<h1>Your answer selection was correct!</h1>".html_safe
         session[:score] = (session[:score].to_i + 100)
-  		end
+      end
       if @question.correct == (@user_answer)
         @winnerinput = "<h1>Your answer input was correct!</h1>".html_safe
         session[:score] = (session[:score].to_i + 100)
       end
-  		@answer = "The correct answer was #{@question.correct}"
-  		@id = Question.all.sort_by{rand}.slice(0).id
+      @answer = "The correct answer was #{@question.correct}"
+      @id = Question.all.sort_by{rand}.slice(0).id
       while session[:usedid].include?(@id) && session[:usedid].length < Question.all.count
         @id = Question.all.sort_by{rand}.slice(0).id
       end
       session[:usedid].push(@id)
-  	end
+    end
     @score = session[:score]
     @counter = session[:counter].to_i
     @maximumarray= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").to_a

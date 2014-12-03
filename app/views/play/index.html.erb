@@ -17,6 +17,13 @@
 				<%= submit_tag @answer_array.at(5), :class => "answer-content" %>
 			</div>			
 		<% end %>
+		<script type="text/javascript">
+		 $(function(){  
+		   setTimeout(function(){
+		      $('#index-form').submit();
+		    },15000);
+		});
+		</script>
 	</div>
 </div>
 <div id="timer-container">

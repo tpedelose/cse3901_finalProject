@@ -13,6 +13,13 @@
 				<%= text_field_tag(:answer) %>
 				<%= submit_tag("Continue", :class => "submit") %>
 			<% end %>
+		<script type="text/javascript">
+		 $(function(){  
+		   setTimeout(function(){
+		      $('form').submit();
+		    },15000);
+		});
+		</script>
 		</div>
 	</div>
 </div>

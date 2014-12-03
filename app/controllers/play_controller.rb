@@ -22,7 +22,16 @@ class PlayController < ApplicationController
       end
       answer_array.push(Question.find_by(id: params[:question_id]).correct)
       if @question.correct.to_s != @user_answer.to_s.upcase
-        answer_array.push(@user_answer .to_s.upcase)
+        if @user_answer != "NO INPUT"
+          answer_array.push(@user_answer.to_s.upcase)
+        else
+          while answer_array.length <  2
+            whiletemp=Answer.all.sort_by{rand}.slice(0)
+            if !answer_array.include?(whiletemp.content) && whiletemp.tag==params[:question_id].to_s
+              answer_array.push(whiletemp.content)
+            end
+          end
+        end
       end
       while answer_array.length < 6 
         whiletemp=Answer.all.sort_by{rand}.slice(0)

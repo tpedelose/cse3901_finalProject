@@ -29,16 +29,17 @@ class PlayController < ApplicationController
   end
 
   def start
-  	@id = Question.all.sort_by{rand}.slice(0).id
+    @game = Game.new
     session[:score] = 0
     session[:usedid] = Array.new
     session[:usedid].push(@id)
   end
 
   def get_input
+    @id = Question.all.sort_by{rand}.slice(0).id
     @score = session[:score].to_i
   	if params[:question_id].present?
-  		@question = Question.find_by(id: params[:question_id])
+  		@question = Question.find_by(id: @id)
   	end
   end
 

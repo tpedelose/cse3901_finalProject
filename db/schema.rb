@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203033039) do
+ActiveRecord::Schema.define(version: 20141203044013) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20141203033039) do
     t.decimal  "times_correct"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_url"
   end
 
 end

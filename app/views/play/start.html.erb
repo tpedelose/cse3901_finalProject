@@ -3,8 +3,36 @@
 		<div id="start-row">
 			<h1>Start Quiz</h1>
 		</div>
-		<%= form_for :get_input, url: get_input_path(:question_id => @id), :html => { :id => "start-form" } do %>
-			<%= submit_tag "Start!", :class => "submit" %>
+		
+		<%= form_for(@game) do |f| %>
+		  <% if @game.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+		      <ul>
+		      <% @game.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+			<div class="field">
+		    	<%= f.select :max_players, "<option>2</option><option>3</option><option>4</option><option>5</option>".html_safe %> </br>
+
+		    	<% f.fields_for :max_players do |player| %>
+		    		<%= player.text_field 'player_1', maxlength: 15, size: 20, placeholder: "Player 1" %>
+		    		<%= player.text_field 'player_2', maxlength: 15, size: 20, placeholder: "Player 2" %>
+		    		<%= player.text_field 'player_3', maxlength: 15, size: 20, placeholder: "Player 3" %>
+		    		<%= player.text_field 'player_4', maxlength: 15, size: 20, placeholder: "Player 4" %>
+		    		<%= player.text_field 'player_5', maxlength: 15, size: 20, placeholder: "Player 5" %>
+		    	<% end %>   	
+		    </div>
+
+ 
+		    <%= form_for :get_input, url: new_game_path(:player1 => @id), :html => { :id => "start-form" } do %>
+				<%= f.submit "Start!", :class => "submit" %>
+			<% end %>
 		<% end %>
 	</div>
 </div>

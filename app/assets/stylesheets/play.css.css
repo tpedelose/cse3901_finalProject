@@ -2,14 +2,6 @@ body {
   width: auto;
   font-family: 'Segoe UI', sans-serif; }
 
-table {
-  width: 100%;
-}
-
-#image {
-  width: 100%;
-}
-
 div#outer-container {
   width: 100%;
   display: table;
@@ -30,7 +22,7 @@ div#outer-container {
       width: 100%; }
       div#outer-container div#inner-container div#userinput-row form {
         margin-bottom: 30px; }
-    div#outer-container div#inner-container form#continue-form {
+    div#outer-container div#inner-container form#continue-form, div#outer-container div#inner-container form#stats-form {
       width: 98%;
       display: table;
       margin: 0 auto 30px auto; }
@@ -74,38 +66,48 @@ div#timer-container {
     animation-fill-mode: backwards;
     animation: countdown 10s linear 0s; }
 
+table.highchart {
+  width: 50%;
+  margin: auto;
+  text-align: center; }
+
 /* Chrome, Safari, Opera */
 @-webkit-keyframes countdown {
   0% {
     width: 100%; }
+
   100% {
     width: 0%;
-    background-color: #ccc; } }
+    background-color: #cccccc; } }
+
 /* Standard syntax */
 @keyframes countdown {
   0% {
     width: 100%; }
+
   100% {
     width: 0%;
-    background-color: #ccc; } }
+    background-color: #cccccc; } }
+
 /* .fadeInUpBig  ---  https://daneden.github.io/animate.css/ */
 @-webkit-keyframes fadeInUpBig {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(0, 2000px, 0);
     transform: translate3d(0, 2000px, 0); }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none; } }
-@keyframes fadeInUpBig {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 2000px, 0);
-    transform: translate3d(0, 2000px, 0); }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
     transform: none; } }
 
-/*# sourceMappingURL=play.css.css.map */
+@keyframes fadeInUpBig {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; } }

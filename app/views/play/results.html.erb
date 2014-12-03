@@ -56,5 +56,9 @@
 		<%= form_for :get_input, url: get_input_path(:question_id => @id ), :html => { :id => "continue-form" } do %>
 			<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
 		<% end %>
+		<%= form_for :play_stats, url: play_stats_path, method: "get", :html => { :id => "stats-form" } do %>
+			<%= submit_tag("Stats", :class => "submit") %>
+		<% end %>
+		<%= @btn_js %>
 	</div>
 </div>

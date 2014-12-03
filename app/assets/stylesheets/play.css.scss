@@ -29,7 +29,7 @@ div#outer-container{
                 margin-bottom: 30px;
             }
         }
-        form#continue-form{
+        form#continue-form, form#stats-form{
             width: 98%;
             display: table;
             margin: 0 auto 30px auto;
@@ -84,7 +84,11 @@ div#timer-container{
     }
 }
 
-
+table.highchart{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes countdown {

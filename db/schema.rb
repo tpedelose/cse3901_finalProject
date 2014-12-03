@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20141203172037) do
     t.string   "tag"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "count",      default: 0
+    t.integer  "count"
     t.string   "name"
   end
 
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20141203172037) do
     t.text     "content"
     t.string   "correct"
     t.text     "fakes"
-    t.decimal  "times_used"
-    t.decimal  "times_correct"
+    t.decimal  "times_used",    default: 0.0
+    t.decimal  "times_correct", default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url"

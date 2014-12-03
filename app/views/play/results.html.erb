@@ -10,17 +10,38 @@
 	<h1>Question <%= @counter %> of 10</h1>
 	<div id="inner-container">
 		<div id="question-row">
-			<h1>Question: <%= @question.content %></h1>
+			<h2>Question: <%= @question.content %></h2>
 		</div>
 		<hr>
 		<div id="answer-row">
-			<h2>Correct Answer: <%= @question.correct %></h2>
-			<h2>You Entered: <%= @user_answer %></h2>
-			<h2>You Chose: <%= @user_choice %></h2>
+			<table width="100%" style="margin: 0px auto;">
+				<thead>
+					<tr>
+
+					</tr>
+				</thead>
+				<tr>
+					<td><h3>Correct Answer </h3></td>
+					<td><h3><%= @question.correct %></h3></td>
+				</tr>
+				<tr>
+					<td><h3>You Entered</h3></td>
+					<td><h3><%= @user_answer %></h3></td>
+				</tr>
+				<tr>
+					<td><h3>You Chose</h3></td>
+					<td><h3><%= @user_choice %></h3></td>
+				</tr>
+				<tr>
+					<td><h3>You Entered</h3></td>
+					<td><h3><%= @user_answer %></h3></td>
+				</tr>
+			</table>
 			<h2>Answer Statistics</h2>
 			<h2>Most Picked Choice: <%= @maximumoutput %></h2>
 			<h2>Correct Choice: <%= @correctoutput %></h2>
-				<table class="highchart" data-graph-container-before="1" data-graph-type="pie" data-graph-datalabels-enabled="1"><caption>Pie Chart of Answers</caption>
+			<h2> Pie Chart of Answers </h2>
+				<table class="highchart" data-graph-container-before="1" data-graph-type="pie" data-graph-datalabels-enabled="1">
 				  <thead>
 				    <tr>
 				      <th>Answer</th>

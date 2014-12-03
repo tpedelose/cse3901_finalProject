@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20141203090733) do
     t.string   "name"
   end
 
+  create_table "players", force: true do |t|
+    t.string   "name"
+    t.decimal  "score"
+    t.decimal  "count"
+    t.string   "answer"
+    t.string   "people_fooled"
+    t.decimal  "num_people_fooled"
+    t.string   "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "content"
     t.string   "correct"

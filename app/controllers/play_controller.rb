@@ -39,7 +39,6 @@ class PlayController < ApplicationController
     session[:counter] = 1
     session[:username]=nil
     session[:usedid] = Array.new
-    session[:usedid].push(@id)
   end
 
   def get_input

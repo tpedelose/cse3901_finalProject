@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  score: 9.99
+  count: 9.99
+  answer: MyString
+  people_fooled: MyString
+  num_people_fooled: 9.99
+  game_id: MyString
+
+two:
+  name: MyString
+  score: 9.99
+  count: 9.99
+  answer: MyString
+  people_fooled: MyString
+  num_people_fooled: 9.99
+  game_id: MyString

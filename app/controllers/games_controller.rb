@@ -25,13 +25,13 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-
-    #names = @game.players.split("; ")
-    #i = 0
-    #while i < @game.max_players
-      #@answer = Answer.new(name: name[1], score: 0, )
-      #i++
-    #end
+    names = Array.new(0)
+    names = params[:p1]<<params[:p2]<<params[:p3]<<params[:p4]<<params[:p5]
+    i = 0
+    while i < @game.max_players
+      @answer = Answer.new(name: names[i], score: 0)
+      i++
+    end
 
     respond_to do |format|
       if @game.save

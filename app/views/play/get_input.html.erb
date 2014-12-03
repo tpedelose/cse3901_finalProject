@@ -1,7 +1,11 @@
 <div id="outer-container">
 	<h1>Score: <%= @score %></h1>
+	<h1>Question <%= @counter %> of 10</h1>
 	<div id="inner-container">
 		<div id="question-row">
+			<div id="image">
+				<%= image_tag(@question.image_url, height: "150", width:"100%") %>
+			</div>
 			<h1>Question: <%= @question.content %></h1>
 		</div>
 		<div id="userinput-row">

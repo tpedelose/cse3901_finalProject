@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203033039) do
+ActiveRecord::Schema.define(version: 20141203090733) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -20,30 +20,22 @@ ActiveRecord::Schema.define(version: 20141203033039) do
     t.datetime "updated_at"
     t.integer  "count",      default: 0
     t.string   "name"
-    t.integer  "score"
-    t.string   "gameid"
-  end
-
-  create_table "games", force: true do |t|
-    t.string   "name"
-    t.string   "passcode"
-    t.decimal  "max_players"
-    t.decimal  "max_observers"
-    t.text     "players"
-    t.text     "observers"
-    t.decimal  "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "questions", force: true do |t|
     t.text     "content"
     t.string   "correct"
     t.text     "fakes"
-    t.string   "tag"
-    t.string   "category"
     t.decimal  "times_used"
     t.decimal  "times_correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url"
+  end
+
+  create_table "scores", force: true do |t|
+    t.text     "name"
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

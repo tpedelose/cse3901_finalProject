@@ -6,6 +6,10 @@ table {
   width: 100%;
 }
 
+#image {
+  width: 100%;
+}
+
 div#outer-container {
   width: 100%;
   display: table;

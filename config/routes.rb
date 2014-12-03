@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'play/set_answer'
   get 'play/answer'
   post 'play/answer'
+  get 'play/stats'
 
   get 'play/index'
   post 'play/index/:question_id/:user_answer' => 'play#index', as: :index

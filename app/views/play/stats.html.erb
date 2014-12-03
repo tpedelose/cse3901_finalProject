@@ -2,21 +2,34 @@
 	<h1>Score: <%= @score %></h1>
 	<div id="inner-container">
 		<div id="question-row">
-			<h1>Question: <%= @question.content %></h1>
+			<h1>Your Final Score: <%= @score %></h1>
 		</div>
 		<hr>
 		<div id="answer-row">
-			<h2>Correct Answer: <%= @question.correct %></h2>
-			<h2>You Entered: <%= @user_answer %></h2>
-			<h2>You Chose: <%= @user_choice %></h2>
+				<table>
+				  <thead>
+				    <tr>
+				      <th>Name</th>
+				      <th>Count</th>
+				      <th>Date</th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @highscores.each do |x| %>
+				      <tr>
+				        <td><%= x.name %></td>
+				        <td><%= x.score %></td>
+				        <td><%= x.created_at.getlocal.asctime %></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
 		</div>
-		<%= form_for :get_input, url: get_input_path(:question_id => @id ), :html => { :id => "continue-form" } do %>
-			<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
-		<% end %>
+
 	</div>
 </div>
 <div id="results-container">
 	<div id="results-content">
-		<h1><%= @winner %></h1>
 	</div>
 </div>

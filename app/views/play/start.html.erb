@@ -3,7 +3,9 @@
 		<div id="start-row">
 			<h1>Start Quiz</h1>
 		</div>
+		<h2>Username</h2>
 		<%= form_for :get_input, url: get_input_path(:question_id => @id), :html => { :id => "start-form" } do %>
+			<%= text_field_tag(:username) %>
 			<%= submit_tag "Start!", :class => "submit" %>
 		<% end %>
 	</div>

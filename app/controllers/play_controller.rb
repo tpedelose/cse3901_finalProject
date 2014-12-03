@@ -2,11 +2,16 @@ class PlayController < ApplicationController
 
   def index
     @score = session[:score]
-  	if (params[:question_id].present? && params[:answer].present?)
+    @counter = session[:counter].to_i
+  	if (params[:question_id].present?)
   		@question = Question.find_by(id: params[:question_id])
       #@answer=Answer.create :content => params[:answer].to_s.upcase, :tag => params[:question_id]
       @dbarray=Answer.all
-      @user_answer = params[:answer]
+      if params[:answer].present?
+        @user_answer = params[:answer]
+      else
+        @user_answer = "IM AN IDIOT"
+      end
       answer_array=Array.new
       if Answer.where(:tag => params[:question_id].to_s).count < 4
         fill = @question.fakes.split('; ')
@@ -15,8 +20,8 @@ class PlayController < ApplicationController
         end
       end
       answer_array.push(Question.find_by(id: params[:question_id]).correct)
-      if @question.correct.to_s != params[:answer].to_s.upcase
-        answer_array.push(params[:answer].to_s.upcase)
+      if @question.correct.to_s != @user_answer.to_s.upcase
+        answer_array.push(@user_answer .to_s.upcase)
       end
       while answer_array.length < 6 
         whiletemp=Answer.all.sort_by{rand}.slice(0)
@@ -31,12 +36,18 @@ class PlayController < ApplicationController
   def start
   	@id = Question.all.sort_by{rand}.slice(0).id
     session[:score] = 0
+    session[:counter] = 1
+    session[:username]=nil
     session[:usedid] = Array.new
     session[:usedid].push(@id)
   end
 
   def get_input
+    if session[:username]==nil
+      session[:username] = params[:username].to_s
+    end
     @score = session[:score].to_i
+    @counter = session[:counter].to_i
   	if params[:question_id].present?
   		@question = Question.find_by(id: params[:question_id])
   	end
@@ -49,9 +60,13 @@ class PlayController < ApplicationController
   		@user_choice = params[:commit].upcase
   		@user_answer = params[:user_answer].upcase
   		if @question.correct == (@user_choice)
-  			@winner = "<h1>Your correct!</h1>".html_safe
+  			@winnerselect = "<h1>Your answer selection was correct!</h1>".html_safe
         session[:score] = (session[:score].to_i + 100)
   		end
+      if @question.correct == (@user_answer)
+        @winnerinput = "<h1>Your answer input was correct!</h1>".html_safe
+        session[:score] = (session[:score].to_i + 100)
+      end
   		@answer = "The correct answer was #{@question.correct}"
   		@id = Question.all.sort_by{rand}.slice(0).id
       while session[:usedid].include?(@id) && session[:usedid].length < Question.all.count
@@ -60,16 +75,29 @@ class PlayController < ApplicationController
       session[:usedid].push(@id)
   	end
     @score = session[:score]
+    @counter = session[:counter].to_i
     @maximumarray= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").to_a
     @maximum= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").first
     @maximum.count=Answer.where(tag: params[:question_id].to_s, content:@maximum.content).count
-    #@maximumoutput=@maximum.content.to_s+@maximum.count.to_s
     @maximumoutput="#{@maximum.content.to_s} was chosen #{@maximum.count.to_s}/#{Answer.count} times"
+    @chart=""
     @maximumarray.each do |x|
       x.count=Answer.where(tag: params[:question_id].to_s, content:x.content).count
       if x.content==@question.correct
         @correctoutput="#{x.content.to_s} was chosen #{x.count.to_s}/#{Answer.count} times"
       end
+      @chart+="['#{x.content}', x.count],\n"
     end
+    session[:counter]+=1
+    if session[:counter]>3
+      redirect_to play_stats_path
+    end
+  end
+
+  def stats
+    @score = session[:score]
+    Scores.create :score => session[:score].to_i, :name => session[:username].to_s
+    @highscores=Scores.order("score DESC").take(10)
+
   end
 end

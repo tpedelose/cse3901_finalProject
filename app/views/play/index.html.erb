@@ -1,25 +1,23 @@
-<div>
+<div id="outer-container">
 	<h1>Score: <%= @score %></h1>
-	<div id="questionContainer"> <!-- Question -->
-		<div class="questionContent">
-			<h2>Question: <%= @question.content %></h2>
+	<div id="inner-container">
+		<div id="question-row">
+			<h1>Question: <%= @question.content %></h1>
 		</div>
-	</div>
-	<div id="answerContainer"> <!-- Answers -->
-		<%= form_for :results, url: results_path(:question_id => @question.id, :user_answer => @user_answer) do %>
-			<div id="answerGroup">
-				<%= submit_tag @answer_array.at(0), :class => "answerContent" %>
-				<%= submit_tag @answer_array.at(1), :class => "answerContent" %>
+		<%= form_for :results, url: results_path(:question_id => @question.id, :user_answer => @user_answer), :html => { :id => "index-form" } do %>
+			<div class="answer-group">
+				<%= submit_tag @answer_array.at(0), :class => "answer-content" %>
+				<%= submit_tag @answer_array.at(1), :class => "answer-content" %>
+				<%= submit_tag @answer_array.at(2), :class => "answer-content" %>			
 			</div>
-			<div id="answerGroup">
-				<%= submit_tag @answer_array.at(2), :class => "answerContent" %>
-				<%= submit_tag @answer_array.at(3), :class => "answerContent" %>
-			</div>
-			<div id="answerGroup">
-				<%= submit_tag @answer_array.at(4), :class => "answerContent" %>
-				<%= submit_tag @answer_array.at(5), :class => "answerContent" %>
+			<div class="answer-group">
+				<%= submit_tag @answer_array.at(3), :class => "answer-content" %>				
+				<%= submit_tag @answer_array.at(4), :class => "answer-content" %>
+				<%= submit_tag @answer_array.at(5), :class => "answer-content" %>
 			</div>			
 		<% end %>
 	</div>
+</div>
+<div id="timer-container">
 	<div class="timerBar"></div>
 </div>

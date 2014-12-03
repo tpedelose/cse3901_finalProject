@@ -1,7 +1,10 @@
-<h1>Start Quiz</h1>
-
-<div class="center">
-<%= form_for :get_input, url: get_input_path(:question_id => @id) do %>
-	<%= submit_tag "Start!", :class => "submit" %>
-<% end %>
+<div id="outer-container">
+	<div id="inner-container">
+		<div id="start-row">
+			<h1>Start Quiz</h1>
+		</div>
+		<%= form_for :get_input, url: get_input_path(:question_id => @id), :html => { :id => "start-form" } do %>
+			<%= submit_tag "Start!", :class => "submit" %>
+		<% end %>
+	</div>
 </div>

@@ -1,104 +1,87 @@
-// Place all the styles related to the Play controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 $bg-color:	#ccc;
 
 body {
     width: auto;
     font-family: 'Segoe UI', sans-serif;
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    background-color: #ccc;
 }
-/*
-#headerWrapper {
+
+div#outer-container{
+    width: 100%; 
+    display: table;
+    margin: 30px auto;
+    text-align: center;
+    div#inner-container{
+        width: 60%;
+        display: table;
+        margin: 30px auto;
+        box-shadow: 4px 4px 4px #d8d8d8;
+        background-color: ghostwhite;
+        div#start-row, div#question-row{
+            width: 100%;
+            h1{
+                margin: 30px auto;
+                text-align: center;
+            }
+        }
+        div#userinput-row{
+            width: 100%;
+            form{
+                margin-bottom: 30px;
+            }
+        }
+        form#continue-form{
+            width: 98%;
+            display: table;
+            margin: 0 auto 30px auto;
+        }
+        form#index-form{
+            width: 98%;
+            display: table;
+            margin: 0 auto 30px auto;
+            div.answer-group{
+                width: 100%;
+                margin: 10px auto;
+                input.answer-content{ 
+                    width: 30%;
+                    float: left;
+                    height: 60px;
+                    margin: auto 1.66%;
+                }
+            }
+            div.answer-group:last-of-type{
+                top: 15px;
+                position: relative;
+            }
+        }
+        form#start-form{
+            display: table;
+            margin: 0 auto 30px auto;
+        }
+    }
+}   
+
+div#results-container{
     width: 100%;
-    min-height: 15%;
-    height: auto;
-    position: relative;
-    border: 0px solid;
-    border-radius: 0px;
-    background-color: #000;
-    box-shadow: 0px 1px 10px -2px #444444;
-    color: #fff;
+    div#results-content{
+        width: 60%;
+        margin: auto;
+        h1{
+            text-align: center;
+        }
+    }
 }
-*/
-
-h1{
-    text-align: center;
-}
-
-form{
-    text-align: center;
-}
-#questionContainer {
-    min-width: 100%;
-    height: 40%;
-    margin: auto; 
-    text-align: center;
-    z-index: 999;
-    float: left;
-    /* animation styling */
-    /*-webkit-animation: fadeInUpBig 3s;
-    animation: fadeInUpBig 3s;*/
-}
-
-#answerContainer {
-    width: 100%;
-    height: 50%;
-    float: center;
-    margin: 0 auto;
-}
-
-#answerContainer h1{
-    text-align: center;
-}
-
-#answerContainer #answerRow{
-    width: 90%;
+div#timer-container{
+    width: 60%;
     margin: auto;
-}
-
-#answerContainer #answerRow .answerButton{
-    width: 33%;
-    float: left;
-}
-
-/* =Structure Tablet
--------------------------------------------------------------- */
-@media screen and (min-width : 900px) {
-	#questionContainer {
-    	width: 70%;
-    	height: 40%;
-    	margin: auto; 
+    div.timerBar {
+        width: 0%;
+        height: 30px;;
+        background-color: #607d8b;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation: countdown 15s linear 0s; /* Chrome, Safari, Opera */    
+        animation-fill-mode: backwards;
+        animation: countdown 15s linear 0s;
     }
-
-    #answerGroup {
-        float: left;
-        width: 33%;
-        margin: 0 auto;
-    }
-}
-
-.questionContent, .answerContent { /* Card style */
-    min-width: 90%;
-    padding: 1.5rem;
-    box-shadow: 0 1px 2px #aaa;
-    background: white;
-    margin: 0 1rem 1rem;
-    border-radius: 3px;
-    text-align: center;
-}
-
-.timerBar {
-    width: 0%;
-    height: 30px;;
-    background-color: #607d8b;
-    animation-fill-mode: backwards;
-    animation: countdown 15s linear 0s;
-    -webkit-animation-fill-mode: backwards;
-    -webkit-animation: countdown 15s linear 0s; /* Chrome, Safari, Opera */
 }
 
 

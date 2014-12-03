@@ -1,87 +1,70 @@
 body {
   width: auto;
-  font-family: 'Segoe UI', sans-serif;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-color: #ccc; }
+  font-family: 'Segoe UI', sans-serif; }
 
-/*
-#headerWrapper {
-    width: 100%;
-    min-height: 15%;
-    height: auto;
-    position: relative;
-    border: 0px solid;
-    border-radius: 0px;
-    background-color: #000;
-    box-shadow: 0px 1px 10px -2px #444444;
-    color: #fff;
-}
-*/
-h1 {
-  text-align: center; }
-
-form {
-  text-align: center; }
-
-#questionContainer {
-  min-width: 100%;
-  height: 40%;
-  margin: auto;
-  text-align: center;
-  z-index: 999;
-  float: left;
-  /* animation styling */
-  /*-webkit-animation: fadeInUpBig 3s;
-  animation: fadeInUpBig 3s;*/ }
-
-#answerContainer {
+div#outer-container {
   width: 100%;
-  height: 50%;
-  margin: 0 auto; }
-
-#answerContainer h1 {
+  display: table;
+  margin: 30px auto;
   text-align: center; }
+  div#outer-container div#inner-container {
+    width: 60%;
+    display: table;
+    margin: 30px auto;
+    box-shadow: 4px 4px 4px #d8d8d8;
+    background-color: ghostwhite; }
+    div#outer-container div#inner-container div#start-row, div#outer-container div#inner-container div#question-row {
+      width: 100%; }
+      div#outer-container div#inner-container div#start-row h1, div#outer-container div#inner-container div#question-row h1 {
+        margin: 30px auto;
+        text-align: center; }
+    div#outer-container div#inner-container div#userinput-row {
+      width: 100%; }
+      div#outer-container div#inner-container div#userinput-row form {
+        margin-bottom: 30px; }
+    div#outer-container div#inner-container form#continue-form {
+      width: 98%;
+      display: table;
+      margin: 0 auto 30px auto; }
+    div#outer-container div#inner-container form#index-form {
+      width: 98%;
+      display: table;
+      margin: 0 auto 30px auto; }
+      div#outer-container div#inner-container form#index-form div.answer-group {
+        width: 100%;
+        margin: 10px auto; }
+        div#outer-container div#inner-container form#index-form div.answer-group input.answer-content {
+          width: 30%;
+          float: left;
+          height: 60px;
+          margin: auto 1.66%; }
+      div#outer-container div#inner-container form#index-form div.answer-group:last-of-type {
+        top: 15px;
+        position: relative; }
+    div#outer-container div#inner-container form#start-form {
+      display: table;
+      margin: 0 auto 30px auto; }
 
-#answerContainer #answerRow {
-  width: 90%;
-  margin: auto; }
-
-#answerContainer #answerRow .answerButton {
-  width: 33%;
-  float: left; }
-
-/* =Structure Tablet
--------------------------------------------------------------- */
-@media screen and (min-width: 900px) {
-  #questionContainer {
-    width: 70%;
-    height: 40%;
+div#results-container {
+  width: 100%; }
+  div#results-container div#results-content {
+    width: 60%;
     margin: auto; }
+    div#results-container div#results-content h1 {
+      text-align: center; }
 
-  #answerGroup {
-    float: left;
-    width: 33%;
-    margin: 0 auto; } }
-.questionContent, .answerContent {
-  /* Card style */
-  min-width: 90%;
-  padding: 1.5rem;
-  box-shadow: 0 1px 2px #aaa;
-  background: white;
-  margin: 0 1rem 1rem;
-  border-radius: 3px;
-  text-align: center; }
-
-.timerBar {
-  width: 0%;
-  height: 30px;
-  background-color: #607d8b;
-  animation-fill-mode: backwards;
-  animation: countdown 15s linear 0s;
-  -webkit-animation-fill-mode: backwards;
-  -webkit-animation: countdown 15s linear 0s;
-  /* Chrome, Safari, Opera */ }
+div#timer-container {
+  width: 60%;
+  margin: auto; }
+  div#timer-container div.timerBar {
+    width: 0%;
+    height: 30px;
+    background-color: #607d8b;
+    -webkit-animation-fill-mode: backwards;
+    -webkit-animation: countdown 15s linear 0s;
+    /* Chrome, Safari, Opera */
+    animation-fill-mode: backwards;
+    animation: countdown 15s linear 0s; }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes countdown {

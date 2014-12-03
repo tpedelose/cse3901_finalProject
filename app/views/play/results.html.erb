@@ -1,16 +1,22 @@
-<h1><%= @winner %></h1>
-<h1>Score: <%= @score %></h1>
-<div>
-	<div id="questionContainer"> <!-- Question -->
-		<img src="/assets/regis.jpg" style="width: 25%; float:center; z-index: 100;">
-		<div class="questionContent">
-			<h2>Question: <%= @question.content %></h2>
+<div id="outer-container">
+	<h1>Score: <%= @score %></h1>
+	<div id="inner-container">
+		<div id="question-row">
+			<h1>Question: <%= @question.content %></h1>
+		</div>
+		<hr>
+		<div id="answer-row">
 			<h2>Correct Answer: <%= @question.correct %></h2>
 			<h2>You Entered: <%= @user_answer %></h2>
 			<h2>You Chose: <%= @user_choice %></h2>
 		</div>
+		<%= form_for :get_input, url: get_input_path(:question_id => @id ), :html => { :id => "continue-form" } do %>
+			<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
+		<% end %>
 	</div>
-	<%= form_for :get_input, url: get_input_path(:question_id => @id ) do %>
-		<%= submit_tag("Continue", :class => "submit", id: @question.id) %>
-	<% end %>
+</div>
+<div id="results-container">
+	<div id="results-content">
+		<h1><%= @winner %></h1>
+	</div>
 </div>

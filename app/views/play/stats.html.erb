@@ -6,12 +6,11 @@
 		</div>
 		<hr>
 		<div id="answer-row">
-				<table>
+				<table class="highchart" data-graph-container-before="1" data-graph-type="column">
 				  <thead>
 				    <tr>
 				      <th>Name</th>
 				      <th>Count</th>
-				      <th>Date</th>
 				    </tr>
 				  </thead>
 
@@ -20,12 +19,21 @@
 				      <tr>
 				        <td><%= x.name %></td>
 				        <td><%= x.score %></td>
-				        <td><%= x.created_at.getlocal.asctime %></td>
 				      </tr>
 				    <% end %>
 				  </tbody>
 				</table>
 		</div>
+			<script>
+				$(document).ready(function() {
+				  $('table.highchart')
+				    .bind('highchartTable.beforeRender', function(event, highChartConfig) {
+				        highChartConfig.chart.backgroundColor = 'ghostwhite';
+				  })
+				    .highchartTable()
+				  ;
+				});
+			</script>
 
 	</div>
 </div>

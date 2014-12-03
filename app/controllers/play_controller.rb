@@ -46,8 +46,8 @@ class PlayController < ApplicationController
     @answer=Answer.create :content => params[:commit].to_s.upcase, :tag => params[:question_id]
   	if (params[:question_id].present? && params[:user_answer].present?)
   		@question = Question.find_by(id: params[:question_id])
-  		@user_choice = params[:commit]
-  		@user_answer = params[:user_answer]
+  		@user_choice = params[:commit].upcase
+  		@user_answer = params[:user_answer].upcase
   		if @question.correct == (@user_choice)
   			@winner = "<h1>Your correct!</h1>".html_safe
         session[:score] = (session[:score].to_i + 100)
@@ -60,6 +60,16 @@ class PlayController < ApplicationController
       session[:usedid].push(@id)
   	end
     @score = session[:score]
-    @maximum= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").first.content
+    @maximumarray= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").to_a
+    @maximum= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").first
+    @maximum.count=Answer.where(tag: params[:question_id].to_s, content:@maximum.content).count
+    #@maximumoutput=@maximum.content.to_s+@maximum.count.to_s
+    @maximumoutput="#{@maximum.content.to_s} was chosen #{@maximum.count.to_s}/#{Answer.count} times"
+    @maximumarray.each do |x|
+      x.count=Answer.where(tag: params[:question_id].to_s, content:x.content).count
+      if x.content==@question.correct
+        @correctoutput="#{x.content.to_s} was chosen #{x.count.to_s}/#{Answer.count} times"
+      end
+    end
   end
 end

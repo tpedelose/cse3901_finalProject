@@ -4,7 +4,7 @@ class PlayController < ApplicationController
     @score = session[:score]
   	if (params[:question_id].present? && params[:answer].present?)
   		@question = Question.find_by(id: params[:question_id])
-      @answer=Answer.create :content => params[:answer].to_s.upcase, :tag => params[:question_id]
+      #@answer=Answer.create :content => params[:answer].to_s.upcase, :tag => params[:question_id]
       @dbarray=Answer.all
       @user_answer = params[:answer]
       answer_array=Array.new
@@ -43,6 +43,7 @@ class PlayController < ApplicationController
   end
 
   def results
+    @answer=Answer.create :content => params[:commit].to_s.upcase, :tag => params[:question_id]
   	if (params[:question_id].present? && params[:user_answer].present?)
   		@question = Question.find_by(id: params[:question_id])
   		@user_choice = params[:commit]
@@ -59,6 +60,6 @@ class PlayController < ApplicationController
       session[:usedid].push(@id)
   	end
     @score = session[:score]
-    @maximum= Answer.where(:tag => params[:question_id].to_s).maximum("content")
+    @maximum= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").first.content
   end
 end

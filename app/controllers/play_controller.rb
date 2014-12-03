@@ -99,17 +99,12 @@ class PlayController < ApplicationController
       @chart+="['#{x.content}', x.count],\n"
     end
     session[:counter]+=1
-<<<<<<< HEAD
     if session[:counter]>10
       @btn_js = "<script>$(document).ready(function(){$('#continue-form').hide();$('#stats-form').show();})</script>".html_safe
     else
       @btn_js = "<script>$(document).ready(function(){$('#stats-form').hide();$('#continue-form').show();})</script>".html_safe
-=======
-    @checkend=session[:counter]
-    if session[:counter]>2
-      redirect_to play_stats_path
->>>>>>> 51724fa3d5282ee1acd026d83848a42ec2ebf416
     end
+    @checkend=session[:counter]
   end
 
   def stats

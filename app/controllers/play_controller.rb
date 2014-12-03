@@ -1,6 +1,7 @@
 class PlayController < ApplicationController
 
   def index
+    @name = session[:username]
     @score = session[:score]
     @counter = session[:counter].to_i
     if (params[:question_id].present?)
@@ -46,6 +47,7 @@ class PlayController < ApplicationController
     if session[:username]==nil
       session[:username] = params[:username].to_s
     end
+    @name = session[:username]
     @score = session[:score].to_i
     @counter = session[:counter].to_i
     if params[:question_id].present?
@@ -54,6 +56,7 @@ class PlayController < ApplicationController
   end
 
   def results
+    @name = session[:username]
     if params[:user_answer].present?
       @user_answer = params[:user_answer].upcase
     else

@@ -5,6 +5,7 @@
 	</div>
 </div>
 <div id="outer-container">
+	<h1><%= @name %></h1>
 	<h1>Score: <%= @score %></h1>
 	<h1>Question <%= @counter %> of 10</h1>
 	<div id="inner-container">
@@ -45,7 +46,12 @@
 					    .highchartTable()
 					  ;
 					});
+					$(document).ready(function()
+					{
+					  $("tr:even").css("background-color", "#dfdfe5");
+					});
 				</script>
+
 		</div>
 		<%= form_for :get_input, url: get_input_path(:question_id => @id ), :html => { :id => "continue-form" } do %>
 			<%= submit_tag("Continue", :class => "submit", id: @question.id) %>

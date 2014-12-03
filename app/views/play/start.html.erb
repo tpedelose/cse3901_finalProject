@@ -20,16 +20,16 @@
 			<div class="field">
 		    	<%= f.select :max_players, "<option>2</option><option>3</option><option>4</option><option>5</option>".html_safe %> </br>
 
-		    	<%= text_field_tag :player_1, nil, maxlength: 15, size: 20, placeholder: "Player 1" %>
-		    	<%= text_field_tag :player_2, nil, maxlength: 15, size: 20, placeholder: "Player 2" %>
-		    	<%= text_field_tag :player_3, nil, maxlength: 15, size: 20, placeholder: "Player 3" %>
-		    	<%= text_field_tag :player_4, nil, maxlength: 15, size: 20, placeholder: "Player 4" %>
-		    	<%= text_field_tag :player_5, nil, maxlength: 15, size: 20, placeholder: "Player 5" %>
+		    	<%= text_field_tag :p_1, nil, maxlength: 15, size: 20, placeholder: "Player 1" %>
+		    	<%= text_field_tag :p_2, nil, maxlength: 15, size: 20, placeholder: "Player 2" %>
+		    	<%= text_field_tag :p_3, nil, maxlength: 15, size: 20, placeholder: "Player 3" %>
+		    	<%= text_field_tag :p_4, nil, maxlength: 15, size: 20, placeholder: "Player 4" %>
+		    	<%= text_field_tag :p_5, nil, maxlength: 15, size: 20, placeholder: "Player 5" %>
 		    </div>
 
  
-		    <%= form_for :get_input, url: new_game_path(:player1 => :player_1 ), :html => { :id => "start-form" } do %>
-				<%= f.submit "Start!", :class => "submit" %>
+		    <%= form_for :new_game_path, url: new_game_path, :html => { :id => "start-form" } do %>
+				<%= f.submit "Start!" %>
 			<% end %>
 		<% end %>
 	</div>

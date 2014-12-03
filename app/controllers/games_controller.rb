@@ -25,18 +25,20 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-    names = Array.new(0)
-    names = params[:p1]<<params[:p2]<<params[:p3]<<params[:p4]<<params[:p5]
-    i = 0
-    while i < @game.max_players
-      @answer = Answer.new(name: names[i], score: 0)
-      i++
+
+    names = Array.new(1, params[:p_1])
+    names<<params[:p_2]<<params[:p_3]<<params[:p_4]<<params[:p_5]
+    names = names - [""]
+
+    for i in names
+      @player = Player.new(name: i, score: 0, game_id: @game.id)
+      @player.save
     end
 
     respond_to do |format|
       if @game.save
         format.html { redirect_to play_get_input_path, notice: 'Game was successfully created.' }
-        format.json { render :get_input, status: :created, location: @game }
+        #format.json { render :get_input, status: :created, location: @game }
       else
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }

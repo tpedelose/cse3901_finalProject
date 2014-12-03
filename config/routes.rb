@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :players
+
   root 'play#start'
   get 'play/start'
   post 'play/set_user_answer'  

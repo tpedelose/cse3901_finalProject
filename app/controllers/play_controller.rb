@@ -100,7 +100,9 @@ class PlayController < ApplicationController
     end
     session[:counter]+=1
     if session[:counter]>10
-      redirect_to play_stats_path
+      @btn_js = "<script>$(document).ready(function(){$('#continue-form').hide();$('#stats-form').show();})</script>".html_safe
+    else
+      @btn_js = "<script>$(document).ready(function(){$('#stats-form').hide();$('#continue-form').show();})</script>".html_safe
     end
   end
 

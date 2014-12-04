@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails_12factor', group: :production
 
 ruby '2.1.2'
+gem 'sqlite3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'

@@ -110,7 +110,7 @@ class PlayController < ApplicationController
     #  end
     #  @chart+="['#{x.content}', x.count],\n"
     end
-    temparray=@maximumarray.group_by { |x| x[:content]}.map {|x,y|y.maxy_by{|x|x[:count]}}
+    temparray=@maximumarray.group_by { |x| x[:content]}.map {|x,y|y.max_by{|x|x[:count]}}
     @maximumarray=temparray
     session[:counter]+=1
     if session[:counter]>10

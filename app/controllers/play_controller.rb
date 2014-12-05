@@ -105,11 +105,13 @@ class PlayController < ApplicationController
     @chart=""
     @maximumarray.each do |x|
       x.count=Answer.where(tag: params[:question_id].to_s, content:x.content).count
-      if x.content==@question.correct
-        @correctoutput="#{x.content.to_s} was chosen #{x.count.to_s}/#{Answer.count} times"
-      end
-      @chart+="['#{x.content}', x.count],\n"
+    #  if x.content==@question.correct
+    #    @correctoutput="#{x.content.to_s} was chosen #{x.count.to_s}/#{Answer.count} times"
+    #  end
+    #  @chart+="['#{x.content}', x.count],\n"
     end
+    temparray=@maximumarray.group_by { |x| x[:content]}.map {|x,y|y.maxy_by{|x|x[:count]}}
+    @maximumarray=temparray
     session[:counter]+=1
     if session[:counter]>10
       @btn_js = "<script>$(document).ready(function(){$('#continue-form').hide();$('#stats-form').show();})</script>".html_safe

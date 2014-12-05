@@ -111,7 +111,7 @@ class PlayController < ApplicationController
     #  @chart+="['#{x.content}', x.count],\n"
     end
     temparray=@maximumarray.group_by { |x| x[:content]}.map {|x,y|y.max_by{|x|x[:count]}}
-    @maximumarray=temparray.sort_by! {|x,y| x.count <=> y.count}
+    @maximumarray=temparray.sort_by! {|x| x.count}.reverse!
     session[:counter]+=1
     if session[:counter]>10
       @btn_js = "<script>$(document).ready(function(){$('#continue-form').hide();$('#stats-form').show();})</script>".html_safe

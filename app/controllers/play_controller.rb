@@ -98,8 +98,8 @@ class PlayController < ApplicationController
     end
     @score = session[:score]
     @counter = session[:counter].to_i
-    @maximumarray= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").to_a
-    @maximum= Answer.where(:tag => params[:question_id].to_s).group("content").order("count(content) DESC").first
+    @maximumarray= Answer.where(:tag => params[:question_id].to_s).uniq{|n| n.id}("content").order("count(content) DESC").to_a
+    @maximum= Answer.where(:tag => params[:question_id].to_s).uniq{|n| n.id}("content").order("count(content) DESC").first
     @maximum.count=Answer.where(tag: params[:question_id].to_s, content:@maximum.content).count
     @maximumoutput="#{@maximum.content.to_s} was chosen #{@maximum.count.to_s}/#{Answer.count} times"
     @chart=""
